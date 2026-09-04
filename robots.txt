@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# TODO: enquanto estas páginas estiverem sem conteúdo final,
+# mantenha-as fora do índice. Remova as linhas ao publicar o conteúdo.
+Disallow: /blog.html
+Disallow: /informacoes.html
+Disallow: /fabricacao-sob-medida.html
+
+Sitemap: https://lojaodascozinhas.com.br/sitemap.xml
