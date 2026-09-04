@@ -311,7 +311,7 @@
 
     <div class="fab-form">
       <h3 class="form-title">Envie sua necessidade</h3>
-      <form id="form-cotacao" novalidate>
+      <form id="form-cotacao" action="https://formspree.io/f/mVkoqgkn" method="POST" enctype="multipart/form-data" novalidate>
         <div class="field">
           <label for="cot-nome">Nome <span class="req" aria-hidden="true">*</span></label>
           <input id="cot-nome" name="nome" type="text" autocomplete="name" required
@@ -382,9 +382,13 @@
           </label>
           <input id="cot-file" name="arquivo" type="file"
                  accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg" hidden>
-          <span class="field-hint">PDF, Word, Excel ou imagem — até 10 MB. O arquivo é anexado na conversa do WhatsApp.</span>
+          <span class="field-hint">PDF, Word, Excel ou imagem — até 10 MB. O arquivo será enviado automaticamente por email.</span>
           <span class="field-error" id="err-cot-file" role="alert"></span>
         </div>
+
+        <!-- Campos ocultos para Formspree -->
+        <input type="hidden" name="_next" value="https://lojaodascozinhas.com.br/obrigado.html">
+        <input type="hidden" name="_captcha" value="false">
 
         <button type="submit" class="btn btn-primary btn-block" id="btn-cotacao">Enviar para cotação</button>
         <p class="form-note">Retornamos em horário comercial.</p>
