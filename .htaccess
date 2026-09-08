@@ -1,6 +1,6 @@
 # Lojão das Cozinhas — headers de segurança (Apache)
 <IfModule mod_headers.c>
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.trustindex.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.trustindex.io https://lh3.googleusercontent.com; media-src 'self'; font-src 'self'; connect-src 'self' https://cdn.trustindex.io; form-action 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.trustindex.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.trustindex.io https://lh3.googleusercontent.com; media-src 'self'; font-src 'self'; connect-src 'self' https://cdn.trustindex.io; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()"

@@ -314,7 +314,7 @@
       <form id="form-cotacao" action="https://formspree.io/f/mVkoqgkn" method="POST" enctype="multipart/form-data" novalidate>
         <div class="field">
           <label for="cot-nome">Nome <span class="req" aria-hidden="true">*</span></label>
-          <input id="cot-nome" name="nome" type="text" autocomplete="name" required
+          <input id="cot-nome" name="name" type="text" autocomplete="name" required
                  aria-required="true" aria-describedby="err-cot-nome">
           <span class="field-error" id="err-cot-nome" role="alert"></span>
         </div>
@@ -322,7 +322,7 @@
         <div class="field-row">
           <div class="field">
             <label for="cot-empresa">Empresa</label>
-            <input id="cot-empresa" name="empresa" type="text" autocomplete="organization">
+            <input id="cot-empresa" name="company" type="text" autocomplete="organization">
           </div>
           <div class="field">
             <label for="cot-cidade">Cidade / UF</label>
@@ -339,7 +339,7 @@
           </div>
           <div class="field">
             <label for="cot-tel">Telefone / WhatsApp <span class="req" aria-hidden="true">*</span></label>
-            <input id="cot-tel" name="telefone" type="tel" autocomplete="tel" required
+            <input id="cot-tel" name="phone" type="tel" autocomplete="tel" required
                    aria-required="true" aria-describedby="err-cot-tel" placeholder="(11) 90000-0000">
             <span class="field-error" id="err-cot-tel" role="alert"></span>
           </div>
@@ -368,7 +368,7 @@
 
         <div class="field">
           <label for="cot-msg">O que você precisa <span class="req" aria-hidden="true">*</span></label>
-          <textarea id="cot-msg" name="mensagem" rows="4" required aria-required="true"
+          <textarea id="cot-msg" name="message" rows="4" required aria-required="true"
                     aria-describedby="err-cot-msg"
                     placeholder="Ex.: caldeirão 300L e bancada sob medida para refeitório de 400 refeições/dia."></textarea>
           <span class="field-error" id="err-cot-msg" role="alert"></span>
@@ -380,7 +380,7 @@
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
             <span id="file-label">Clique para selecionar o arquivo</span>
           </label>
-          <input id="cot-file" name="arquivo" type="file"
+          <input id="cot-file" name="file" type="file"
                  accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg" hidden>
           <span class="field-hint">PDF, Word, Excel ou imagem — até 10 MB. O arquivo será enviado automaticamente por email.</span>
           <span class="field-error" id="err-cot-file" role="alert"></span>

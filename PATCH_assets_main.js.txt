@@ -1,0 +1,91 @@
+================================================================
+PATCH para assets/main.js
+================================================================
+Esse arquivo NÃO está no repositório GitHub (só existe na pasta
+"assets" que vocês sobem separadamente para o Netlify), então não
+dá pra te entregar o arquivo inteiro pronto sem correr o risco de
+divergir de alguma outra alteração que exista nele.
+
+Abaixo está o bloco EXATO que precisa ser localizado e substituído
+dentro do assets/main.js atual (o trecho abre com o comentário
+"/* Nome do arquivo + validação de tamanho */" dentro do
+document.addEventListener('DOMContentLoaded', ...) do formulário
+"form-cotacao"). Todo o resto do arquivo (menu mobile, botões
+flutuantes de WhatsApp com [data-wa], seção de avaliações) NÃO
+precisa mudar.
+
+----------------------------------------------------------------
+PROCURAR POR (código atual, com o desvio para WhatsApp):
+----------------------------------------------------------------
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(btn.disabled) return;              /* proteção contra envio duplo */
+
+    var erros = validar();
+    if(erros.length){
+      setStatus('erro', 'Revise os campos destacados para continuar.');
+      var primeiro = document.getElementById(erros[0]);
+      if(primeiro) primeiro.focus();
+      return;
+    }
+
+    /* Estado de carregamento */
+    btn.disabled = true;
+    var textoOriginal = btn.textContent;
+    btn.textContent = 'Enviando...';
+    setStatus('', '');
+
+    var msg = montarMensagem();
+
+    if(LOJAO_CONFIG.whatsapp){
+      window.open('https://wa.me/' + LOJAO_CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank');
+      setStatus('ok', 'Tudo certo. Abrimos o WhatsApp com seus dados — é só enviar a mensagem' +
+        (fileInput && fileInput.files[0] ? ' e anexar o arquivo.' : '.'));
+    } else {
+      setStatus('aviso', 'Canal de WhatsApp em configuração. Os dados de contato serão ativados na publicação do site.');
+    }
+
+    btn.disabled = false;
+    btn.textContent = textoOriginal;
+  });
+
+----------------------------------------------------------------
+SUBSTITUIR POR (valida e deixa o navegador enviar pro Formspree):
+----------------------------------------------------------------
+
+  form.addEventListener('submit', function(e){
+    if(btn.disabled){ e.preventDefault(); return; }   /* proteção contra envio duplo */
+
+    var erros = validar();
+    if(erros.length){
+      e.preventDefault();                              /* só bloqueia se inválido */
+      setStatus('erro', 'Revise os campos destacados para continuar.');
+      var primeiro = document.getElementById(erros[0]);
+      if(primeiro) primeiro.focus();
+      return;
+    }
+
+    /* Válido: NÃO chama e.preventDefault(). O navegador segue com o
+       POST multipart/form-data nativo para o Formspree (action/method/
+       enctype já estão no <form> no index.html) e, na sequência, o
+       Formspree redireciona para _next (obrigado.html). */
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    setStatus('', '');
+  });
+
+----------------------------------------------------------------
+Observação sobre montarMensagem():
+----------------------------------------------------------------
+A função montarMensagem() (que montava o texto pro WhatsApp) deixa
+de ser usada por esse formulário, mas não precisa apagá-la — ela é
+inofensiva se ficar sem uso. Se quiser deixar o arquivo mais limpo,
+pode removê-la junto, mas não é obrigatório para o formulário
+funcionar.
+
+Não mexer no bloco mais acima do arquivo que usa LOJAO_CONFIG.whatsapp
+para montar os links dos botões flutuantes de WhatsApp (elementos
+com atributo [data-wa]) — isso é uma funcionalidade separada do
+formulário de cotação e deve continuar funcionando exatamente como
+está.
